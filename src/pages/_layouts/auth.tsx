@@ -3,7 +3,7 @@ import { Pizza } from "lucide-react";
 
 export function AuthLayout() {
   return (
-    <div className="grid min-h-screen grid-cols-2">
+    <div className="grid min-h-screen grid-cols-2 antialiased">
       {/* Coluna esquerda */}
       <div className="flex flex-col justify-between border-r border-foreground/5 bg-muted p-10 text-muted-foreground">
         {/* Cabeçalho */}
@@ -19,9 +19,9 @@ export function AuthLayout() {
       </div>
 
       {/* Coluna direita */}
-      <div className="bg-white flex items-center justify-center">
+      <div className="relative flex items-center justify-center bg-white">
         <Outlet />
       </div>
     </div>
-  )
+  );
 }
