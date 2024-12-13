@@ -19,7 +19,7 @@ export function AuthLayout() {
       </div>
 
       {/* Coluna direita */}
-      <div className="relative flex items-center justify-center bg-white">
+      <div className="relative flex items-center justify-center">
         <Outlet />
       </div>
     </div>
