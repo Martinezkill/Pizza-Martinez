@@ -14,7 +14,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-//export interface OrderDetailsProps {}
+export interface OrderDetailsProps {}
 
 export function OrderDetails() {
   return (
