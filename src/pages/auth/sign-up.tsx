@@ -5,10 +5,12 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { RegisterRestaurant } from "@/api/register-restaurant";
 
 export const SignUpForm = z.object({
   restaurantName: z.string(),
-  managerName:z.string(),
+  managerName: z.string(),
   phone: z.string(),
   email: z.string().email(),
 });
@@ -16,7 +18,7 @@ export const SignUpForm = z.object({
 type SignUpForm = z.infer<typeof SignUpForm>;
 
 export function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,15 +26,23 @@ export function SignUp() {
     formState: { isSubmitting },
   } = useForm<SignUpForm>();
 
+  const { mutateAsync: registerRestautantFn } = useMutation({
+    mutationFn: RegisterRestaurant,
+  });
+
   async function handleSignIn(data: SignUpForm) {
     try {
-      
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await registerRestautantFn({
+        restaurantName: data.restaurantName,
+        managerName: data.managerName,
+        email: data.email,
+        phone: data.phone,
+      });
 
       toast.success("Restaurante cadastrado com sucesso.", {
         action: {
           label: "Login",
-          onClick: () => navigate('/sign-in'),
+          onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
       });
     } catch {
@@ -45,7 +55,7 @@ export function SignUp() {
     <>
       <Helmet title="Cadastro" />
       <div className="p-8">
-      <Button variant="ghost" asChild className="absolute right-8 top-8">
+        <Button variant="ghost" asChild className="absolute right-8 top-8">
           <Link to="/sign-in">Fazer login</Link>
         </Button>
         <div className="flex w-[350px] flex-col justify-center gap-6">
@@ -61,12 +71,20 @@ export function SignUp() {
           <form onSubmit={handleSubmit(handleSignIn)} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="restaurantName">Nome do estabelecimento</label>
-              <Input id="restaurantName" type="text" {...register("restaurantName")} />
+              <Input
+                id="restaurantName"
+                type="text"
+                {...register("restaurantName")}
+              />
             </div>
 
             <div className="space-y-2">
               <label htmlFor="managerName">Seu nome</label>
-              <Input id="managerName" type="text" {...register("managerName")} />
+              <Input
+                id="managerName"
+                type="text"
+                {...register("managerName")}
+              />
             </div>
 
             <div className="space-y-2">
@@ -88,14 +106,14 @@ export function SignUp() {
             </button>
 
             <p className="px-6 text-center text-sm leading-relaxed text-muted-foreground">
-              Ao continuar, você concorda com nossos{' '} 
-              <a className="underline underline-offset-4"href="">
+              Ao continuar, você concorda com nossos{" "}
+              <a className="underline underline-offset-4" href="">
                 Termos de serviço
-                </a> {' '} 
-                  e {' '} 
-                <a className="underline underline-offset-4"href="">
-                  políticas de privacidade.
-                </a>
+              </a>{" "}
+              e{" "}
+              <a className="underline underline-offset-4" href="">
+                políticas de privacidade.
+              </a>
             </p>
           </form>
         </div>
