@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { useMemo } from "react";
 import {
   ResponsiveContainer,
   LineChart,
@@ -25,6 +26,12 @@ export function RevenueChart() {
     queryFn: getDailyRevenueInPeriod,
   });
 
+  const chartData = useMemo(() => {
+    return dailyRevenueInPeriod?.map((chartItem) => {
+      return { date: chartItem.date, receipt: chartItem.receipt / 100 };
+    });
+  }, [dailyRevenueInPeriod]);
+
   return (
     <Card className="col-span-6">
       <CardHeader className="flex-row items-center justify-between pb-8">
@@ -36,9 +43,9 @@ export function RevenueChart() {
         </div>
       </CardHeader>
       <CardContent>
-        {dailyRevenueInPeriod ? (
+        {chartData ? (
           <ResponsiveContainer width="100%" height={240}>
-            <LineChart data={dailyRevenueInPeriod} style={{ fontSize: 12 }}>
+            <LineChart data={chartData} style={{ fontSize: 12 }}>
               <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
 
               <YAxis

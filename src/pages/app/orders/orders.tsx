@@ -8,7 +8,7 @@ import {
 import { Helmet } from "react-helmet-async";
 import { OrderTableRow } from "./order-table-row";
 import { OrderTableFilters } from "./order-table-filters";
-import { Pagination } from "@/components/theme/pagination";
+import { Pagination } from "@/components/ui/pagination";
 import { useQuery } from "@tanstack/react-query";
 import { getOrders } from "@/api/get-orders";
 import { useSearchParams } from "react-router-dom";
@@ -63,7 +63,7 @@ export function Orders() {
                   <TableHead className="w-[180px]">Realizado há</TableHead>
                   <TableHead className="w-[140px]">Status</TableHead>
                   <TableHead>Cliente</TableHead>
-                  <TableHead className="w-[150px]">Total do pedido</TableHead>
+                  <TableHead className="w-[140px]">Total do pedido</TableHead>
                   <TableHead className="w-[164px]"></TableHead>
                   <TableHead className="w-[132px]"></TableHead>
                 </TableRow>
