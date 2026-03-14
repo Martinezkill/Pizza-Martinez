@@ -38,7 +38,6 @@ export function OrderStatus({ status }: OrderStatusProps) {
       <span className="font-medium text-muted-foreground">
         {orderStatusMap[status]}
       </span>
-      {orderStatusMap[status]}
     </div>
   );
 }

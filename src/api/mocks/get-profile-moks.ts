@@ -5,7 +5,7 @@ export const getProfileMock = http.get<never, never, GetProfileResponse>(
   "/me",
   () => {
     return HttpResponse.json({
-      id: "custom-uses-id",
+      id: "custom-user-id",
       name: "john doe",
       email: "johndoe@exemple.com",
       phone: "99988-2134",

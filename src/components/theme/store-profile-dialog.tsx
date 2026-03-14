@@ -47,7 +47,10 @@ export function StoreProfileDialog() {
     },
   });
 
-function updateManagedRestaurantCache({ name, description }: StoreProfileSchema) {
+  function updateManagedRestaurantCache({
+    name,
+    description,
+  }: StoreProfileSchema) {
     const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
       "managed-restaurant",
     ]);
@@ -63,20 +66,20 @@ function updateManagedRestaurantCache({ name, description }: StoreProfileSchema)
       );
     }
 
-    return { cached }
+    return { cached };
   }
 
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
     onMutate({ name, description }) {
-      const { cached } = updateManagedRestaurantCache({ name, description})
-    
-      return { previousProfile: cached }
+      const { cached } = updateManagedRestaurantCache({ name, description });
+
+      return { previousProfile: cached };
     },
 
     onError(_, __, context) {
       if (context?.previousProfile) {
-        updateManagedRestaurantCache(context.previousProfile)
+        updateManagedRestaurantCache(context.previousProfile);
       }
     },
   });
@@ -113,7 +116,7 @@ function updateManagedRestaurantCache({ name, description }: StoreProfileSchema)
 
           <div className="grid grid-cols-4 items-center gap-4">
             <Label className="text-right" htmlFor="description">
-              Descriçåo
+              Descricao
             </Label>
             <Textarea
               className="col-span-3"
