@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./app.tsx";
+import { App } from "./app";
 import "./global.css";
 import { enableMSW } from "./api/mocks/index.ts";
 
