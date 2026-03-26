@@ -49,8 +49,9 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@rocketseat/eslint-config": "^3.0.12",
-    "@testing-library/jest-dom": "^6.6.4",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.19.13",
     "@types/react": "^18.3.12",

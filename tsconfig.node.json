@@ -2,22 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "types": ["node"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@api/*": ["./src/api/*"]
-    }
+    "strict": true
   },
-  "include": [
-    "playwright.config.ts",
-    "test/**/*.ts",
-    "vite.config.ts"
-  ]
+  "include": ["vite.config.ts"]
 }
